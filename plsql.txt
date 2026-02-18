@@ -1,0 +1,174 @@
+SELECT * FROM STUDENT; 
+
+	ID NAME 		     MARKS
+---------- -------------------- ----------
+	 1 RILEY			44
+	 2 RGG				44
+	 3 YM				33
+	 4 YD				92
+
+
+
+CREATE OR REPLACE FUNCTION palindrome(word VARCHAR2)
+RETURN BOOLEAN
+IS
+    left NUMBER := 1;
+    right NUMBER := LENGTH(word);
+BEGIN
+    WHILE left < right LOOP
+        IF SUBSTR(word, left, 1) != SUBSTR(word, right, 1) THEN
+            RETURN FALSE;
+        END IF;
+        left := left + 1;
+        right := right - 1;
+    END LOOP;
+    RETURN TRUE;
+END;
+/
+
+
+DECLARE
+    word VARCHAR2(20) := '&word';
+BEGIN
+    IF palindrome(word) THEN
+        DBMS_OUTPUT.PUT_LINE(word || ' is a palindrome');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(word || ' is NOT a palindrome');
+    END IF;
+END;
+/
+
+
+DECLARE 
+  CURSOR STUDENT_CURSOR IS SELECT name, marks FROM STUDENT;
+  v_name STUDENT.name%TYPE;
+  v_mark STUDENT.marks%TYPE;
+BEGIN
+  OPEN STUDENT_CURSOR;
+  LOOP
+    FETCH STUDENT_CURSOR INTO v_name, v_mark;
+    EXIT WHEN STUDENT_CURSOR%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(v_name || ' --> ' || v_mark);
+  END LOOP;
+  CLOSE STUDENT_CURSOR;
+END;
+/
+
+CREATE OR REPLACE TRIGGER MARKS 
+BEFORE INSERT
+ON STUDENT
+FOR EACH ROW
+BEGIN
+:NEW.MARKS := MOD(:NEW.MARKS, 100);
+END;
+/
+
+CREATE OR REPLACE PACKAGE student_pkg IS
+    PROCEDURE add_student(p_id NUMBER,p_name VARCHAR2, p_marks NUMBER);
+    PROCEDURE show_students;
+END student_pkg;
+/
+
+CREATE OR REPLACE PACKAGE BODY student_pkg IS
+    PROCEDURE add_student(p_id NUMBER, p_name VARCHAR2, p_marks NUMBER) IS
+    BEGIN
+        INSERT INTO student(id, name, marks) VALUES(p_id, p_name, p_marks);
+        COMMIT;
+    END add_student;
+
+    PROCEDURE show_students IS
+        CURSOR c_students IS SELECT name, marks FROM student;
+        v_name student.name%TYPE;
+        v_marks student.marks%TYPE;
+    BEGIN
+        OPEN c_students;
+        LOOP
+            FETCH c_students INTO v_name, v_marks;
+            EXIT WHEN c_students%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE(v_name || ' --> ' || v_marks);
+        END LOOP;
+        CLOSE c_students;
+    END show_students;
+
+END student_pkg;
+/
+
+
+BEGIN
+    student_pkg.add_student(3,'ym', 8533);
+    student_pkg.add_student(4, 'yd', 111192);
+
+    student_pkg.show_students;
+END;
+/
+
+create view high_score AS SELECT id, name, marks from STUDENT WHERE marks > 80;
+SELECT * FROM high_score;
+
+
+
+CREATE TABLE customers (
+    customer_id NUMBER PRIMARY KEY,
+    name VARCHAR2(100),
+    email VARCHAR2(100)
+);
+
+CREATE TABLE accounts (
+    account_id NUMBER PRIMARY KEY,
+    customer_id NUMBER,
+    balance NUMBER,
+    CONSTRAINT fk_customer
+        FOREIGN KEY (customer_id)
+        REFERENCES customers(customer_id)
+);
+
+CREATE OR REPLACE PROCEDURE transfer_money (
+    p_from_account_id IN NUMBER,
+    p_to_account_id IN NUMBER,
+    p_amount IN NUMBER
+) IS
+    v_from_balance NUMBER;
+    v_to_balance NUMBER;
+BEGIN
+    BEGIN
+        SELECT balance INTO v_from_balance
+        FROM accounts
+        WHERE account_id = p_from_account_id
+        FOR UPDATE;
+
+        SELECT balance INTO v_to_balance
+        FROM accounts
+        WHERE account_id = p_to_account_id
+        FOR UPDATE;
+		IF p_amount <= 0 THEN
+		 RAISE_APPLICATION_ERROR(-20001, 'YOU CANNOT TRANSFER NEGETIVE MONEY!!!!');
+		END IF;
+		
+        IF v_from_balance < p_amount THEN
+            RAISE_APPLICATION_ERROR(-20001, 'Insufficient funds in the source account');
+        END IF;
+
+        UPDATE accounts
+        SET balance = balance - p_amount
+        WHERE account_id = p_from_account_id;
+
+        UPDATE accounts
+        SET balance = balance + p_amount
+        WHERE account_id = p_to_account_id;
+
+        COMMIT;
+        
+        DBMS_OUTPUT.PUT_LINE('Transaction completed successfully: ' || p_amount || ' transferred from account ' || p_from_account_id || ' to ' || p_to_account_id);
+    EXCEPTION
+        WHEN OTHERS THEN
+            ROLLBACK;
+            DBMS_OUTPUT.PUT_LINE(SQLERRM);
+    END;
+END transfer_money;
+/
+
+BEGIN
+    transfer_money(101, 102, -22);
+END;
+/
+
