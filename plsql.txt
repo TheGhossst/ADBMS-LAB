@@ -108,13 +108,65 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE TRIGGER Marks_After_Insert
+AFTER INSERT
+ON STUDENT
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_TABLE (ACTION, TABLE_NAME, ACTION_DATE)
+  VALUES ('INSERT', 'STUDENT', SYSDATE);
+END;
+/
+
+CREATE OR REPLACE TRIGGER Marks_Before_Update
+BEFORE UPDATE
+ON STUDENT
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_TABLE (ACTION, TABLE_NAME, ACTION_DATE)
+  VALUES ('UPDATE', 'STUDENT', SYSDATE);
+END;
+/
+
+CREATE OR REPLACE TRIGGER Marks_After_Update
+AFTER UPDATE
+ON STUDENT
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_TABLE (ACTION, TABLE_NAME, ACTION_DATE)
+  VALUES ('UPDATE', 'STUDENT', SYSDATE);
+END;
+/
+
+CREATE OR REPLACE TRIGGER Marks_Before_Delete
+BEFORE DELETE
+ON STUDENT
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_TABLE (ACTION, TABLE_NAME, ACTION_DATE)
+  VALUES ('DELETE', 'STUDENT', SYSDATE);
+END;
+/
+
+CREATE OR REPLACE TRIGGER Marks_After_Delete
+AFTER DELETE
+ON STUDENT
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_TABLE (ACTION, TABLE_NAME, ACTION_DATE)
+  VALUES ('DELETE', 'STUDENT', SYSDATE);
+END;
+/
+
 CREATE OR REPLACE PACKAGE student_pkg IS
-    PROCEDURE add_student(p_id NUMBER,p_name VARCHAR2, p_marks NUMBER);
+    PROCEDURE add_student(p_id NUMBER, p_name VARCHAR2, p_marks NUMBER);
     PROCEDURE show_students;
+    FUNCTION calculate_avg_marks RETURN NUMBER;
 END student_pkg;
 /
 
 CREATE OR REPLACE PACKAGE BODY student_pkg IS
+
     PROCEDURE add_student(p_id NUMBER, p_name VARCHAR2, p_marks NUMBER) IS
     BEGIN
         INSERT INTO student(id, name, marks) VALUES(p_id, p_name, p_marks);
@@ -135,15 +187,29 @@ CREATE OR REPLACE PACKAGE BODY student_pkg IS
         CLOSE c_students;
     END show_students;
 
+    FUNCTION calculate_avg_marks RETURN NUMBER IS
+        v_avg_marks NUMBER;
+    BEGIN
+        SELECT AVG(marks) INTO v_avg_marks FROM student;
+        RETURN v_avg_marks;
+    END calculate_avg_marks;
+
 END student_pkg;
 /
-
 
 BEGIN
     student_pkg.add_student(3,'ym', 8533);
     student_pkg.add_student(4, 'yd', 111192);
-
+	student_pkg.calculate_avg_marks();
     student_pkg.show_students;
+END;
+/
+
+DECLARE
+    v_avg NUMBER;
+BEGIN
+    v_avg := student_pkg.calculate_avg_marks;
+    DBMS_OUTPUT.PUT_LINE('Average Marks: ' || v_avg);
 END;
 /
 
