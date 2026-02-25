@@ -1,8 +1,8 @@
-CREATE TABLE cust (
-    id NUMBER PRIMARY KEY,
+CREATE TABLE CUSTOMER (
+    id NUMBER PRIMARY KEY NOT NULL,
     name VARCHAR2(50),
-    age NUMBER,
-    gender VARCHAR2(10),
+    age NUMBER CHECK (age > 0),
+    gender VARCHAR2(10) CHECK gender IN ('m', 'f', 'ym');
     profession VARCHAR2(50)
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE shop_details (
 CREATE TABLE items (
     i_name VARCHAR2(50) PRIMARY KEY,
     brand VARCHAR2(50),
-    cost NUMBER
+    cost NUMBER check (cost >= 0)
 );
 
 CREATE TABLE transactions (
