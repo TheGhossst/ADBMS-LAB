@@ -30,7 +30,9 @@ MyNewStrongPassword123!
 ```
 
 # XML
-
 ```bash
-mysqldump -u root -p --xml bank > bank1.xml
+sudo mysqldump -u <username> -p --xml <dbname> > <filename>.xml
+```
+```bash
+sudo mysqldump -u root -p --xml bank > bank2.xml
 ```
