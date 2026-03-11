@@ -1,4 +1,8 @@
 ```bash
+sudo apt install docker
+```
+
+```bash
 docker pull gvenzl/oracle-xe
 ```
 
