@@ -1,11 +1,15 @@
-### IF NO ORACLE-XE
-
 ```bash
-sudo docker pull gvenzl/oracle-xe:21
+docker pull gvenzl/oracle-xe
 ```
-### ELSE
-```bash
 
-docker start oracle-xe 
+```bash
+docker run -d \
+--name oracle-xe \
+-p 1521:1521 \
+-e ORACLE_PASSWORD=YourPassword \
+gvenzl/oracle-xe
+```
+
+```bash
 docker exec -it oracle-xe sqlplus system/YourPassword@XEPDB1
 ```
