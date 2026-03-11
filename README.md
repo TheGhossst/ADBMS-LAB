@@ -22,3 +22,8 @@ docker exec -it oracle-xe sqlplus system/YourPassword@XEPDB1
 Username: system  
 Password: YourPassword  
 Service (Database): XEPDB1
+
+
+# Mysql password
+
+MyNewStrongPassword123!
