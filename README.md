@@ -25,5 +25,12 @@ Service (Database): XEPDB1
 
 
 # Mysql password
-
+```bash
 MyNewStrongPassword123!
+```
+
+# XML
+
+```bash
+mysqldump -u root -p --xml bank > bank1.xml
+```
