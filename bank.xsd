@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="bank">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="branch">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="branch_name" type="xs:string"/>
+                    <xs:element name="branch_city" type="xs:string"/>
+                    <xs:element name="assets" type="xs:decimal"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="account">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="account_number" type="xs:string"/>
+                    <xs:element name="balance" type="xs:decimal"/>
+                    <xs:element name="branch_name" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="customer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="customer_name" type="xs:string"/>
+                    <xs:element name="customer_street" type="xs:string"/>
+                    <xs:element name="customer_city" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="loan">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="loan_number" type="xs:string"/>
+                    <xs:element name="amount" type="xs:decimal"/>
+                    <xs:element name="branch_name" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="depositor">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="customer_name" type="xs:string"/>
+                    <xs:element name="account_number" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+
+        <xs:element name="borrower">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="row" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="customer_name" type="xs:string"/>
+                    <xs:element name="loan_number" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:key name="branchKey">
+      <xs:selector xpath="branch/row"/>
+      <xs:field xpath="branch_name"/>
+    </xs:key>
+
+    <xs:key name="accountKey">
+      <xs:selector xpath="account/row"/>
+      <xs:field xpath="account_number"/>
+    </xs:key>
+
+    <xs:key name="customerKey">
+      <xs:selector xpath="customer/row"/>
+      <xs:field xpath="customer_name"/>
+    </xs:key>
+
+    <xs:key name="loanKey">
+      <xs:selector xpath="loan/row"/>
+      <xs:field xpath="loan_number"/>
+    </xs:key>
+
+
+    <xs:keyref name="accountBranchFK" refer="branchKey">
+      <xs:selector xpath="account/row"/>
+      <xs:field xpath="branch_name"/>
+    </xs:keyref>
+
+    <xs:keyref name="loanBranchFK" refer="branchKey">
+      <xs:selector xpath="loan/row"/>
+      <xs:field xpath="branch_name"/>
+    </xs:keyref>
+
+    <xs:keyref name="depositorCustomerFK" refer="customerKey">
+      <xs:selector xpath="depositor/row"/>
+      <xs:field xpath="customer_name"/>
+    </xs:keyref>
+
+    <xs:keyref name="depositorAccountFK" refer="accountKey">
+      <xs:selector xpath="depositor/row"/>
+      <xs:field xpath="account_number"/>
+    </xs:keyref>
+
+    <xs:keyref name="borrowerCustomerFK" refer="customerKey">
+      <xs:selector xpath="borrower/row"/>
+      <xs:field xpath="customer_name"/>
+    </xs:keyref>
+
+    <xs:keyref name="borrowerLoanFK" refer="loanKey">
+      <xs:selector xpath="borrower/row"/>
+      <xs:field xpath="loan_number"/>
+    </xs:keyref>
+
+  </xs:element>
+
+</xs:schema>
