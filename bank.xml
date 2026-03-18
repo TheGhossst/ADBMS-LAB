@@ -1,333 +1,83 @@
-<?xml version="1.0"?>
-<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<database name="bank">
-	<table_structure name="account">
-		<field Field="account_number" Type="varchar(30)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="balance" Type="decimal(15,2)" Null="NO" Key="" Extra="" Comment="" />
-		<field Field="branch_name" Type="varchar(50)" Null="NO" Key="MUL" Extra="" Comment="" />
-		<key Table="account" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="account_number" Collation="A" Cardinality="18" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="account" Non_unique="1" Key_name="fk_account_branch" Seq_in_index="1" Column_name="branch_name" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="account" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="18" Avg_row_length="910" Data_length="16384" Max_data_length="0" Index_length="16384" Data_free="0" Create_time="2026-01-21 10:18:57" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="account">
-	<row>
-		<field name="account_number">A1001</field>
-		<field name="balance">15000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	<row>
-		<field name="account_number">A1002</field>
-		<field name="balance">32000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	<row>
-		<field name="account_number">A1003</field>
-		<field name="balance">5400.00</field>
-		<field name="branch_name">Mapusa_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1004</field>
-		<field name="balance">88000.00</field>
-		<field name="branch_name">Margao_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1005</field>
-		<field name="balance">25000.00</field>
-		<field name="branch_name">Vasco_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1006</field>
-		<field name="balance">9100.00</field>
-		<field name="branch_name">Ponda_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1007</field>
-		<field name="balance">47000.00</field>
-		<field name="branch_name">Calangute_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1008</field>
-		<field name="balance">1200.00</field>
-		<field name="branch_name">Bicholim_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1009</field>
-		<field name="balance">6700.00</field>
-		<field name="branch_name">Pernem_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1010</field>
-		<field name="balance">99000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	<row>
-		<field name="account_number">A1011</field>
-		<field name="balance">45000.00</field>
-		<field name="branch_name">Margao_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1012</field>
-		<field name="balance">3000.00</field>
-		<field name="branch_name">Mapusa_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1013</field>
-		<field name="balance">81000.00</field>
-		<field name="branch_name">Vasco_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1014</field>
-		<field name="balance">7600.00</field>
-		<field name="branch_name">Ponda_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1015</field>
-		<field name="balance">26000.00</field>
-		<field name="branch_name">Calangute_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1016</field>
-		<field name="balance">55000.00</field>
-		<field name="branch_name">Bicholim_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1017</field>
-		<field name="balance">8800.00</field>
-		<field name="branch_name">Pernem_Br</field>
-	</row>
-	<row>
-		<field name="account_number">A1018</field>
-		<field name="balance">41000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	</table_data>
-	<table_structure name="borrower">
-		<field Field="customer_name" Type="varchar(80)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="loan_number" Type="varchar(30)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<key Table="borrower" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="customer_name" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="borrower" Non_unique="0" Key_name="PRIMARY" Seq_in_index="2" Column_name="loan_number" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="borrower" Non_unique="1" Key_name="fk_borrower_loan" Seq_in_index="1" Column_name="loan_number" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="borrower" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="0" Avg_row_length="0" Data_length="16384" Max_data_length="0" Index_length="16384" Data_free="0" Create_time="2026-01-21 10:22:00" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="borrower">
-	</table_data>
-	<table_structure name="branch">
-		<field Field="branch_name" Type="varchar(50)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="branch_city" Type="varchar(50)" Null="NO" Key="" Extra="" Comment="" />
-		<field Field="assets" Type="decimal(15,2)" Null="NO" Key="" Extra="" Comment="" />
-		<key Table="branch" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="branch_name" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="branch" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="8" Avg_row_length="2048" Data_length="16384" Max_data_length="0" Index_length="0" Data_free="0" Create_time="2026-01-21 10:18:52" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="branch">
-	<row>
-		<field name="branch_name">Bicholim_Br</field>
-		<field name="branch_city">Bicholim</field>
-		<field name="assets">3900000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Calangute_Br</field>
-		<field name="branch_city">Calangute</field>
-		<field name="assets">4300000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Mapusa_Br</field>
-		<field name="branch_city">Mapusa</field>
-		<field name="assets">6500000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Margao_Br</field>
-		<field name="branch_city">Margao</field>
-		<field name="assets">8900000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Panaji_Main</field>
-		<field name="branch_city">Panaji</field>
-		<field name="assets">12000000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Pernem_Br</field>
-		<field name="branch_city">Pernem</field>
-		<field name="assets">3600000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Ponda_Br</field>
-		<field name="branch_city">Ponda</field>
-		<field name="assets">5100000.00</field>
-	</row>
-	<row>
-		<field name="branch_name">Vasco_Br</field>
-		<field name="branch_city">Vasco</field>
-		<field name="assets">7400000.00</field>
-	</row>
-	</table_data>
-	<table_structure name="customer">
-		<field Field="customer_name" Type="varchar(80)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="customer_street" Type="varchar(100)" Null="YES" Key="" Extra="" Comment="" />
-		<field Field="customer_city" Type="varchar(50)" Null="YES" Key="" Extra="" Comment="" />
-		<key Table="customer" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="customer_name" Collation="A" Cardinality="16" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="customer" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="16" Avg_row_length="1024" Data_length="16384" Max_data_length="0" Index_length="0" Data_free="0" Create_time="2026-01-21 10:19:04" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="customer">
-	<row>
-		<field name="customer_name">Aarav</field>
-		<field name="customer_street">MG Road</field>
-		<field name="customer_city">Panaji</field>
-	</row>
-	<row>
-		<field name="customer_name">Advait</field>
-		<field name="customer_street">Port Road</field>
-		<field name="customer_city">Vasco</field>
-	</row>
-	<row>
-		<field name="customer_name">Ananya</field>
-		<field name="customer_street">Beach Road</field>
-		<field name="customer_city">Calangute</field>
-	</row>
-	<row>
-		<field name="customer_name">Arjun</field>
-		<field name="customer_street">Temple Road</field>
-		<field name="customer_city">Ponda</field>
-	</row>
-	<row>
-		<field name="customer_name">Diya</field>
-		<field name="customer_street">Station Road</field>
-		<field name="customer_city">Vasco</field>
-	</row>
-	<row>
-		<field name="customer_name">Ishaan</field>
-		<field name="customer_street">Market Street</field>
-		<field name="customer_city">Mapusa</field>
-	</row>
-	<row>
-		<field name="customer_name">Kabir</field>
-		<field name="customer_street">Hill Road</field>
-		<field name="customer_city">Pernem</field>
-	</row>
-	<row>
-		<field name="customer_name">Karan</field>
-		<field name="customer_street">River Road</field>
-		<field name="customer_city">Ponda</field>
-	</row>
-	<row>
-		<field name="customer_name">Meera</field>
-		<field name="customer_street">Lake View</field>
-		<field name="customer_city">Bicholim</field>
-	</row>
-	<row>
-		<field name="customer_name">Nisha</field>
-		<field name="customer_street">Main Street</field>
-		<field name="customer_city">Margao</field>
-	</row>
-	<row>
-		<field name="customer_name">Priya</field>
-		<field name="customer_street">Fort Road</field>
-		<field name="customer_city">Panaji</field>
-	</row>
-	<row>
-		<field name="customer_name">Rahul</field>
-		<field name="customer_street">Garden Road</field>
-		<field name="customer_city">Mapusa</field>
-	</row>
-	<row>
-		<field name="customer_name">Riley</field>
-		<field name="customer_street">Hostel Road</field>
-		<field name="customer_city">Goa</field>
-	</row>
-	<row>
-		<field name="customer_name">Saanvi</field>
-		<field name="customer_street">Sunset Lane</field>
-		<field name="customer_city">Panaji</field>
-	</row>
-	<row>
-		<field name="customer_name">Sneha</field>
-		<field name="customer_street">Palm Street</field>
-		<field name="customer_city">Calangute</field>
-	</row>
-	<row>
-		<field name="customer_name">Vihaan</field>
-		<field name="customer_street">Church Road</field>
-		<field name="customer_city">Margao</field>
-	</row>
-	</table_data>
-	<table_structure name="depositor">
-		<field Field="customer_name" Type="varchar(80)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="account_number" Type="varchar(30)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<key Table="depositor" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="customer_name" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="depositor" Non_unique="0" Key_name="PRIMARY" Seq_in_index="2" Column_name="account_number" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="depositor" Non_unique="1" Key_name="fk_depositor_account" Seq_in_index="1" Column_name="account_number" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="depositor" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="0" Avg_row_length="0" Data_length="16384" Max_data_length="0" Index_length="16384" Data_free="0" Create_time="2026-01-21 10:21:49" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="depositor">
-	</table_data>
-	<table_structure name="loan">
-		<field Field="loan_number" Type="varchar(30)" Null="NO" Key="PRI" Extra="" Comment="" />
-		<field Field="amount" Type="decimal(15,2)" Null="NO" Key="" Extra="" Comment="" />
-		<field Field="branch_name" Type="varchar(50)" Null="NO" Key="MUL" Extra="" Comment="" />
-		<key Table="loan" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="loan_number" Collation="A" Cardinality="12" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<key Table="loan" Non_unique="1" Key_name="fk_loan_branch" Seq_in_index="1" Column_name="branch_name" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" Visible="YES" />
-		<options Name="loan" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="12" Avg_row_length="1365" Data_length="16384" Max_data_length="0" Index_length="16384" Data_free="0" Create_time="2026-01-21 10:19:14" Collation="utf8mb4_0900_ai_ci" Create_options="" Comment="" />
-	</table_structure>
-	<table_data name="loan">
-	<row>
-		<field name="loan_number">L2001</field>
-		<field name="amount">150000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	<row>
-		<field name="loan_number">L2002</field>
-		<field name="amount">80000.00</field>
-		<field name="branch_name">Mapusa_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2003</field>
-		<field name="amount">250000.00</field>
-		<field name="branch_name">Margao_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2004</field>
-		<field name="amount">120000.00</field>
-		<field name="branch_name">Vasco_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2005</field>
-		<field name="amount">60000.00</field>
-		<field name="branch_name">Ponda_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2006</field>
-		<field name="amount">90000.00</field>
-		<field name="branch_name">Calangute_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2007</field>
-		<field name="amount">45000.00</field>
-		<field name="branch_name">Bicholim_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2008</field>
-		<field name="amount">110000.00</field>
-		<field name="branch_name">Pernem_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2009</field>
-		<field name="amount">300000.00</field>
-		<field name="branch_name">Panaji_Main</field>
-	</row>
-	<row>
-		<field name="loan_number">L2010</field>
-		<field name="amount">95000.00</field>
-		<field name="branch_name">Margao_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2011</field>
-		<field name="amount">70000.00</field>
-		<field name="branch_name">Mapusa_Br</field>
-	</row>
-	<row>
-		<field name="loan_number">L2012</field>
-		<field name="amount">50000.00</field>
-		<field name="branch_name">Vasco_Br</field>
-	</row>
-	</table_data>
-</database>
-</mysqldump>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bank xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="bank.xsd">
+
+  <branch>
+    <row><branch_name>Calangute_Br</branch_name><branch_city>Calangute</branch_city><assets>4300000</assets></row>
+    <row><branch_name>Bicholim_Br</branch_name><branch_city>Bicholim</branch_city><assets>3900000</assets></row>
+    <row><branch_name>Mapusa_Br</branch_name><branch_city>Mapusa</branch_city><assets>6500000</assets></row>
+    <row><branch_name>Margao_Br</branch_name><branch_city>Margao</branch_city><assets>8900000</assets></row>
+    <row><branch_name>Panaji_Main</branch_name><branch_city>Panaji</branch_city><assets>12000000</assets></row>
+    <row><branch_name>Pernem_Br</branch_name><branch_city>Pernem</branch_city><assets>3600000</assets></row>
+    <row><branch_name>Ponda_Br</branch_name><branch_city>Ponda</branch_city><assets>5100000</assets></row>
+    <row><branch_name>Vasco_Br</branch_name><branch_city>Vasco</branch_city><assets>7400000</assets></row>
+  </branch>
+
+  <account>
+    <row><account_number>A1001</account_number><balance>15000</balance><branch_name>Panaji_Main</branch_name></row>
+    <row><account_number>A1002</account_number><balance>32000</balance><branch_name>Panaji_Main</branch_name></row>
+    <row><account_number>A1003</account_number><balance>5400</balance><branch_name>Mapusa_Br</branch_name></row>
+    <row><account_number>A1004</account_number><balance>88000</balance><branch_name>Margao_Br</branch_name></row>
+    <row><account_number>A1005</account_number><balance>25000</balance><branch_name>Vasco_Br</branch_name></row>
+    <row><account_number>A1006</account_number><balance>9100</balance><branch_name>Ponda_Br</branch_name></row>
+    <row><account_number>A1007</account_number><balance>47000</balance><branch_name>Calangute_Br</branch_name></row>
+    <row><account_number>A1008</account_number><balance>1200</balance><branch_name>Bicholim_Br</branch_name></row>
+    <row><account_number>A1009</account_number><balance>6700</balance><branch_name>Pernem_Br</branch_name></row>
+    <row><account_number>A1010</account_number><balance>99000</balance><branch_name>Panaji_Main</branch_name></row>
+    <row><account_number>A1011</account_number><balance>45000</balance><branch_name>Margao_Br</branch_name></row>
+    <row><account_number>A1012</account_number><balance>3000</balance><branch_name>Mapusa_Br</branch_name></row>
+    <row><account_number>A1013</account_number><balance>81000</balance><branch_name>Vasco_Br</branch_name></row>
+    <row><account_number>A1014</account_number><balance>7600</balance><branch_name>Ponda_Br</branch_name></row>
+    <row><account_number>A1015</account_number><balance>26000</balance><branch_name>Calangute_Br</branch_name></row>
+    <row><account_number>A1016</account_number><balance>55000</balance><branch_name>Bicholim_Br</branch_name></row>
+    <row><account_number>A1017</account_number><balance>8800</balance><branch_name>Pernem_Br</branch_name></row>
+    <row><account_number>A1018</account_number><balance>41000</balance><branch_name>Panaji_Main</branch_name></row>
+  </account>
+
+  <customer>
+    <row><customer_name>Aarav</customer_name><customer_street>MG Road</customer_street><customer_city>Panaji</customer_city></row>
+    <row><customer_name>Advait</customer_name><customer_street>Port Road</customer_street><customer_city>Vasco</customer_city></row>
+    <row><customer_name>Ananya</customer_name><customer_street>Beach Road</customer_street><customer_city>Calangute</customer_city></row>
+    <row><customer_name>Arjun</customer_name><customer_street>Temple Road</customer_street><customer_city>Ponda</customer_city></row>
+    <row><customer_name>Diya</customer_name><customer_street>Station Road</customer_street><customer_city>Vasco</customer_city></row>
+    <row><customer_name>Ishaan</customer_name><customer_street>Market Street</customer_street><customer_city>Mapusa</customer_city></row>
+    <row><customer_name>Kabir</customer_name><customer_street>Hill Road</customer_street><customer_city>Pernem</customer_city></row>
+    <row><customer_name>Karan</customer_name><customer_street>River Road</customer_street><customer_city>Ponda</customer_city></row>
+    <row><customer_name>Meera</customer_name><customer_street>Lake View</customer_street><customer_city>Bicholim</customer_city></row>
+    <row><customer_name>Nisha</customer_name><customer_street>Main Street</customer_street><customer_city>Margao</customer_city></row>
+    <row><customer_name>Priya</customer_name><customer_street>Fort Road</customer_street><customer_city>Panaji</customer_city></row>
+    <row><customer_name>Rahul</customer_name><customer_street>Garden Road</customer_street><customer_city>Mapusa</customer_city></row>
+    <row><customer_name>Riley</customer_name><customer_street>Hostel Road</customer_street><customer_city>Goa</customer_city></row>
+    <row><customer_name>Saanvi</customer_name><customer_street>Sunset Lane</customer_street><customer_city>Panaji</customer_city></row>
+    <row><customer_name>Sneha</customer_name><customer_street>Palm Street</customer_street><customer_city>Calangute</customer_city></row>
+    <row><customer_name>Vihaan</customer_name><customer_street>Church Road</customer_street><customer_city>Margao</customer_city></row>
+  </customer>
+
+  <loan>
+    <row><loan_number>L2001</loan_number><amount>150000</amount><branch_name>Panaji_Main</branch_name></row>
+    <row><loan_number>L2002</loan_number><amount>80000</amount><branch_name>Mapusa_Br</branch_name></row>
+    <row><loan_number>L2003</loan_number><amount>250000</amount><branch_name>Margao_Br</branch_name></row>
+    <row><loan_number>L2004</loan_number><amount>120000</amount><branch_name>Vasco_Br</branch_name></row>
+    <row><loan_number>L2005</loan_number><amount>60000</amount><branch_name>Ponda_Br</branch_name></row>
+    <row><loan_number>L2006</loan_number><amount>90000</amount><branch_name>Calangute_Br</branch_name></row>
+    <row><loan_number>L2007</loan_number><amount>45000</amount><branch_name>Bicholim_Br</branch_name></row>
+    <row><loan_number>L2008</loan_number><amount>110000</amount><branch_name>Pernem_Br</branch_name></row>
+    <row><loan_number>L2009</loan_number><amount>300000</amount><branch_name>Panaji_Main</branch_name></row>
+    <row><loan_number>L2010</loan_number><amount>95000</amount><branch_name>Margao_Br</branch_name></row>
+    <row><loan_number>L2011</loan_number><amount>70000</amount><branch_name>Mapusa_Br</branch_name></row>
+    <row><loan_number>L2012</loan_number><amount>50000</amount><branch_name>Vasco_Br</branch_name></row>
+  </loan>
+
+  <depositor>
+    <row><customer_name>Riley</customer_name><account_number>A1001</account_number></row>
+    <row><customer_name>Aarav</customer_name><account_number>A1002</account_number></row>
+    <row><customer_name>Ananya</customer_name><account_number>A1007</account_number></row>
+  </depositor>
+
+  <borrower>
+    <row><customer_name>Riley</customer_name><loan_number>L2001</loan_number></row>
+    <row><customer_name>Nisha</customer_name><loan_number>L2003</loan_number></row>
+  </borrower>
+
+</bank>
